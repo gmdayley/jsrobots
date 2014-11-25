@@ -33,8 +33,8 @@ app.get('/lights/off', function(req, res) {
   res.status(200).send();
 });
 
-app.get('/lights/color', function(req, res) {
+app.get('/lights/color/:r/:g/:b', function(req, res) {
   // TODO - add query params for hsl
-  lifx.lightsColor();
+  lifx.lightsColor(req.params.r, req.params.g, req.params.b);
   res.status(200).send();
 });

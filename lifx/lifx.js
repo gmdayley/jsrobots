@@ -1,5 +1,7 @@
 var lifx = require('lifx');
 var lx = lifx.init();
+//lifx.setDebug(true);
+var colors = require('./colors');
 
 var EventEmitter = require('events').EventEmitter;
 
@@ -18,8 +20,17 @@ module.exports = (function() {
     lx.lightsOff(bulb);
   }
 
-  function lightsColor(hue, saturation, luminance, whiteColor, fadeTime, bulb) {
-    lx.lightsColour(hue, saturation, luminance,  whiteColor, fadeTime, bulb);
+  function lightsColor(r, g, b) {
+    console.log(r, g, b);
+    var hsl = colors.rgbToHsl(r, g, b);
+    console.log(hsl);
+    var h = hsl.h,
+        s = hsl.s,
+        l = hsl.l,
+        w = 0x0dac,
+        f = 300;
+
+    lx.lightsColour(h,s,l,w,f);
   }
 
   function listBulbs() {
