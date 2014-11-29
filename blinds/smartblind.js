@@ -26,7 +26,6 @@ var robot = Cylon.robot({
   }
 });
 
-// start working
 robot.start();
 
 module.exports = robot;
