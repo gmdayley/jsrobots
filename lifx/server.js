@@ -9,11 +9,24 @@ console.log('Server listening on port ' + 4002);
 
 var lifx = require('./lifx');
 
+lifx.on('lifx:bulb', function(bulb) {
+  console.log('Lifx bulb: ', bulb);
+});
+
+
 io.on('connection', function (socket) {
   socket.emit('hello');
 
-  lifx.on('lifx:bulb', function(bulb) {
-    console.log('Lifx bulb: ', bulb);
+  socket.on('lights:color', function(rgb) {
+    lifx.lightsColor(rgb.r, rgb.g, rgb.b);
+  });
+
+  socket.on('lights:on', function() {
+    lifx.lightsOn();
+  });
+
+  socket.on('lights:off', function() {
+    lifx.lightsOff();
   });
 });
 
