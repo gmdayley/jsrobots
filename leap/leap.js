@@ -6,7 +6,7 @@ module.exports = (function () {
   var ee = new EventEmitter();
   var leapController = new Leap.Controller({enableGestures: true});
   var lastGesture = 0;
-  var gestureDelay = 200;
+  var gestureDelay = 500;
 
   leapController.on('frame', function (frame) {
     var now = new Date().getTime();

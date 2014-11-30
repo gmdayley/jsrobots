@@ -7,9 +7,15 @@ module.exports = (function (interval) { console.log('hello');
   var ee = new EventEmitter();
   interval = interval || 1000;
 
+  var data = { temp: -1, light: -1};
+
 
   getTemperature();
   getLight();
+
+  setInterval(function(){
+    ee.emit('data', data);
+  }, interval);
 
   function getTemperature() {
     request('https://api.spark.io/v1/devices/' + config.sparkcore.deviceId1 +
@@ -19,10 +25,9 @@ module.exports = (function (interval) { console.log('hello');
         console.log('Error: ', err);
         ee.emit('error', err);
       } else {
-        var temp = JSON.parse(body).result;
-        ee.emit('temp', temp);
+        data.temp = JSON.parse(body).result;
       }
-      setTimeout(getTemperature, interval);
+      setTimeout(getTemperature, 1000);
     });
   }
 
@@ -34,10 +39,9 @@ module.exports = (function (interval) { console.log('hello');
         console.log('Error: ', err);
         ee.emit('error', err);
       } else {
-        var light = JSON.parse(body).result;
-        ee.emit('light', light);
+        data.light = JSON.parse(body).result;
       }
-      setTimeout(getLight, interval);
+      setTimeout(getLight, 1000);
     });
   }
 

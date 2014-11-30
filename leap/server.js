@@ -6,8 +6,8 @@ var io = require('socket.io')(server);
 app.use(express.static('www'));
 
 var leap = require('./leap');
-server.listen(4000);
-console.log('Server listening on port ' + 4000);
+server.listen(4001);
+console.log('Server listening on port ' + 4001);
 
 io.on('connection', function (socket) {
   socket.emit('hello');

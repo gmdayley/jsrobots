@@ -7,7 +7,6 @@
     "start": "node server.js"
   },
   "author": "Gabriel Dayley",
-  "license": "ISC",
   "dependencies": {
     "express": "^4.10.2",
     "leapjs": "^0.6.2",

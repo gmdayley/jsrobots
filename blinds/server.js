@@ -3,7 +3,6 @@ var server = require('http').Server(app);
 var io = require('socket.io')(server);
 
 var SmartBlind = require('./smartblind');
-//console.log(require('util').inspect(SmartBlind, {depth:9});
 server.listen(80);
 
 app.get('/rotate/:degree', function (req, res) {
