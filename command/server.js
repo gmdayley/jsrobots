@@ -4,6 +4,7 @@ var app = express();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 var ioClient = require('socket.io-client');
+var request = require('request');
 
 app.use(express.static('www'));
 
@@ -38,4 +39,26 @@ lifxIo.on('connect', function(d) {
   console.log('Connected to lifx');
 });
 
+//Control the blinds
+function Blinds() {
+  this.open = function() {
+    request(config.blinds + '/rotate/100', function (error, response, body) {
+      if (error) { console.log(error); }
+    });
+  };
 
+  this.close = function() {
+    request(config.blinds + '/rotate/10', function (error, response, body) {
+      if (error) { console.log(error); }
+    });
+  };
+}
+var blinds = new Blinds();
+
+//setTimeout(function() {
+//  blinds.open();
+//}, 2000);
+//
+//setTimeout(function() {
+//  blinds.close();
+//}, 3000);
