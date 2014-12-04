@@ -32,3 +32,10 @@ sensorsIo.on('connect', function(d) {
   });
 });
 
+// Connect to lifx
+var lifxIo = ioClient.connect(config.lifx);
+lifxIo.on('connect', function(d) {
+  console.log('Connected to lifx');
+});
+
+
