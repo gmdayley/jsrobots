@@ -1,0 +1,30 @@
+
+<html>
+  <head>
+    <title>Command Center</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css"/>
+    <script lang="javascript" src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+  </head>
+  <body>
+    <div style="width: 80%; margin: 0 auto;">
+      <h1>Command Center</h1>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">Blinds</h3>
+        </div>
+        <div class="panel-body">
+          <button id="blinds-open" type="button" class="btn btn-lg btn-primary">Open Blinds</button>
+          <button id="blinds-close" type="button" class="btn btn-lg btn-warning">Close Blinds</button>
+        </div>
+      </div>
+    </div>
+    <script>
+      $('#blinds-open').bind('click', function() {
+        $.ajax('http://192.168.1.50/rotate/100');
+      });
+      $('#blinds-close').bind('click', function() {
+        $.ajax('http://192.168.1.50/rotate/10');
+      });
+    </script>
+  </body>
+</html>
